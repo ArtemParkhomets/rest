@@ -22,8 +22,8 @@ class AuthorResource extends JsonResource
             'slug_name'        => $this->slug_name,
             'year_birth'       => $this->year_birth,
             'biography'        => $this->biography,
-            'avatar'           => Storage::url(storage_path('app/public/avatars/') . $this->avatar),
-            'preview_avatar'  => Storage::url(storage_path('app/public/avatars/100_100_') . $this->avatar),
+            'avatar'           => storage_path('app/public/avatars/') . $this->avatar,
+            'preview_avatar'   => storage_path('app/public/avatars/100_100_') . $this->avatar,
             'created_at'       => $this->created_at,
             'updated_at'       => $this->updated_at,
         ];

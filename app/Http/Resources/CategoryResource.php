@@ -19,8 +19,8 @@ class CategoryResource extends JsonResource
             'id'              => $this->id,
             'title'           => $this->title,
             'slug_title'      => $this->slug_title,
-            'picture'         => Storage::url(storage_path('app/public/categories/') . $this->picture),
-            'preview_picture' => Storage::url(storage_path('app/public/categories/100_100_') . $this->picture),
+            'picture'         => storage_path('app/public/categories/' . $this->picture),
+            'preview_picture' => storage_path('app/public/categories/100_100_' . $this->picture),
             'created_at'      => $this->created_at,
             'updated_at'      => $this->updated_at,
         ];

@@ -23,10 +23,14 @@ class AuthorSeeder extends Seeder
         if(!File::exists($filepath)){
             File::makeDirectory($filepath);
         }
-        $file = $faker->image($filepath,300,300, null, false);
-        Image::make($filepath.'/'.$file)
-            ->resize(100, 100)
-            ->save($filepath.'/100_100_'.$file);
+        try {
+            $file = $faker->image($filepath,200,200, null, false);
+            Image::make($filepath.'/'.$file)
+                ->resize(100, 100)
+                ->save($filepath.'/100_100_'.$file);
+        } catch (\Throwable $exception) {
+            $file = 'image.img';
+        }
         for($i = 1; $i < 50; $i++) {
             $name = $faker->name();
             $fields[] = [
