@@ -1,0 +1,495 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Blog posts API",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/authors/": {
+            "get": {
+                "tags": [
+                    "Authors"
+                ],
+                "summary": "Поиск автора по фамилии, или получение списка авторов",
+                "description": "Поиск автора по фамилии, или получение списка авторов",
+                "operationId": "ff23e1c66e066747962057aa426da0d0",
+                "parameters": [
+                    {
+                        "name": "search",
+                        "in": "query",
+                        "description": "ФИО автора",
+                        "required": false
+                    },
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "description": "Количество записей",
+                        "required": false
+                    },
+                    {
+                        "name": "offset",
+                        "in": "query",
+                        "description": "Смещение",
+                        "required": false
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": "200"
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/Author"
+                                            }
+                                        },
+                                        "pagination": {
+                                            "properties": {
+                                                "limit": {
+                                                    "type": "integer",
+                                                    "example": "2"
+                                                },
+                                                "offset": {
+                                                    "type": "integer",
+                                                    "example": "2"
+                                                },
+                                                "total": {
+                                                    "type": "integer",
+                                                    "example": "200"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "204": {
+                        "description": "No content"
+                    }
+                }
+            }
+        },
+        "/api/authors/{parameter}": {
+            "get": {
+                "tags": [
+                    "Authors"
+                ],
+                "summary": "Запрос автора по ID или slug",
+                "description": "Get blog post by id",
+                "operationId": "4bd30deb0287869fbe99aba5c99f39c0",
+                "parameters": [
+                    {
+                        "name": "parameter",
+                        "in": "path",
+                        "description": "ID или slug автора",
+                        "required": true,
+                        "example": "30"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Статус 200 и результат запроса",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": "success"
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/Author"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error: Bad Request"
+                    }
+                }
+            }
+        },
+        "/api/categories/": {
+            "get": {
+                "tags": [
+                    "Categories"
+                ],
+                "summary": "Вывод списка категорий",
+                "description": "Вывод списка категорий",
+                "operationId": "90cf7d029aa660d05b4bfa0cc96feeef",
+                "parameters": [
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "description": "Количество записей",
+                        "required": false
+                    },
+                    {
+                        "name": "offset",
+                        "in": "query",
+                        "description": "Смещение",
+                        "required": false
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": "success"
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/Category"
+                                            }
+                                        },
+                                        "pagination": {
+                                            "properties": {
+                                                "limit": {
+                                                    "type": "integer",
+                                                    "example": "2"
+                                                },
+                                                "offset": {
+                                                    "type": "integer",
+                                                    "example": "2"
+                                                },
+                                                "total": {
+                                                    "type": "integer",
+                                                    "example": "200"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "204": {
+                        "description": "No content"
+                    }
+                }
+            }
+        },
+        "/api/categories/{parameter}": {
+            "get": {
+                "tags": [
+                    "Categories"
+                ],
+                "summary": "Запрос категории по ID или slug",
+                "description": "Запрос категории по ID или slug",
+                "operationId": "5c7a47e54bbaebf73ad38fb15e1a294f",
+                "parameters": [
+                    {
+                        "name": "parameter",
+                        "in": "path",
+                        "description": "ID или slug категории",
+                        "required": true,
+                        "example": "30"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Статус 200 и результат запроса",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": "success"
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/Category"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error: Bad Request"
+                    }
+                }
+            }
+        },
+        "/api/posts/": {
+            "get": {
+                "tags": [
+                    "Posts"
+                ],
+                "summary": "Поиск статьи по названию, автору, категории",
+                "description": "Поиск статьи по названию, автору, категории",
+                "parameters": [
+                    {
+                        "name": "category",
+                        "in": "query",
+                        "description": "ID категории",
+                        "required": false
+                    },
+                    {
+                        "name": "author",
+                        "in": "query",
+                        "description": "ID автора",
+                        "required": false
+                    },
+                    {
+                        "name": "title",
+                        "in": "query",
+                        "description": "Часть или полное название статьи",
+                        "required": false
+                    },
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "description": "Количество записей",
+                        "required": false
+                    },
+                    {
+                        "name": "offset",
+                        "in": "query",
+                        "description": "Смещение",
+                        "required": false
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": "200"
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/Post"
+                                            }
+                                        },
+                                        "pagination": {
+                                            "properties": {
+                                                "limit": {
+                                                    "type": "integer",
+                                                    "example": "2"
+                                                },
+                                                "offset": {
+                                                    "type": "integer",
+                                                    "example": "2"
+                                                },
+                                                "total": {
+                                                    "type": "integer",
+                                                    "example": "200"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "204": {
+                        "description": "No content"
+                    }
+                }
+            }
+        },
+        "/api/posts/{parameter}": {
+            "get": {
+                "tags": [
+                    "Posts"
+                ],
+                "summary": "Запрос статьи по ID или slug",
+                "description": "Запрос статьи по ID или slug",
+                "operationId": "7a565617321ee85e23c73c7298fedde0",
+                "parameters": [
+                    {
+                        "name": "parameter",
+                        "in": "path",
+                        "description": "ID или slug статьи",
+                        "required": true,
+                        "example": "30"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Статус success и результат запроса",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": "success"
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/Post"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error: Bad Request"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Author": {
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "readOnly": "true",
+                        "example": "100500"
+                    },
+                    "full_name": {
+                        "type": "string"
+                    },
+                    "slug_name": {
+                        "type": "string"
+                    },
+                    "avatar": {
+                        "type": "string"
+                    },
+                    "preview_avatar": {
+                        "type": "string"
+                    },
+                    "year_birth": {
+                        "type": "integer"
+                    },
+                    "biography": {
+                        "type": "string"
+                    },
+                    "created_at": {
+                        "type": "string",
+                        "example": "2021-09-18T18:14:28.000000Z"
+                    },
+                    "updated_at": {
+                        "type": "string",
+                        "example": "2021-09-18T18:14:28.000000Z"
+                    }
+                },
+                "type": "object",
+                "xml": {
+                    "name": "Author"
+                }
+            },
+            "Category": {
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "readOnly": "true",
+                        "example": "100500"
+                    },
+                    "title": {
+                        "type": "string"
+                    },
+                    "slug_title": {
+                        "type": "string"
+                    },
+                    "picture": {
+                        "type": "string"
+                    },
+                    "preview_picture": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    },
+                    "created_at": {
+                        "type": "string",
+                        "example": "2021-09-18T18:14:28.000000Z"
+                    },
+                    "updated_at": {
+                        "type": "string",
+                        "example": "2021-09-18T18:14:28.000000Z"
+                    }
+                },
+                "type": "object",
+                "xml": {
+                    "name": "Category"
+                }
+            },
+            "Post": {
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "readOnly": "true",
+                        "example": "100500"
+                    },
+                    "title": {
+                        "type": "string"
+                    },
+                    "title_slug": {
+                        "type": "string"
+                    },
+                    "picture": {
+                        "type": "string"
+                    },
+                    "preview_picture": {
+                        "type": "string"
+                    },
+                    "text": {
+                        "type": "string"
+                    },
+                    "preview_text": {
+                        "type": "string"
+                    },
+                    "author_id": {
+                        "type": "integer"
+                    },
+                    "category_ids": {
+                        "type": "array",
+                        "items": {
+                            "type": "integer"
+                        }
+                    },
+                    "created_at": {
+                        "type": "string",
+                        "example": "2021-09-18T18:14:28.000000Z"
+                    },
+                    "updated_at": {
+                        "type": "string",
+                        "example": "2021-09-18T18:14:28.000000Z"
+                    }
+                },
+                "type": "object",
+                "xml": {
+                    "name": "Post"
+                }
+            }
+        }
+    },
+    "security": [
+        []
+    ]
+}
